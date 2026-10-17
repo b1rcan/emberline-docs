@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="tr" data-title-tr="Emberline | Kararlarınla şekillenen hikâyeler" data-title-en="Emberline | Stories shaped by your choices">
+<html lang="tr" data-title-tr="Emberline | Hikâyenin sonunu sen yazarsın" data-title-en="Emberline | You decide how the story ends">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emberline | Kararlarınla şekillenen hikâyeler</title>
+<title>Emberline | Hikâyenin sonunu sen yazarsın</title>
 <meta name="description" content="Emberline: kararlarınla şekillenen etkileşimli hikâyeler. Interactive stories shaped by your choices.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2305060F%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%227%22 fill=%22%23F4A259%22/%3E%3C/svg%3E">
 <meta name="theme-color" content="#05060F">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script src="assets/lang.js"></script>
 </head>
@@ -16,122 +16,219 @@
 <canvas id="sky" aria-hidden="true"></canvas>
 <a class="skip" href="#ana"><span class="tr">İçeriğe geç</span><span class="en">Skip to content</span></a>
 <div class="page">
-<header class="bar">
+<div class="bar-wrap"><header class="bar">
   <a class="mark" href="./">Emberline</a>
   <div class="right">
-  <nav aria-label="Belgeler / Documents">
-    <a href="gizlilik/"><span class="tr">Gizlilik</span><span class="en">Privacy</span></a>
-    <a href="kosullar/"><span class="tr">Koşullar</span><span class="en">Terms</span></a>
-    <a href="hesap-silme/"><span class="tr">Hesap silme</span><span class="en">Delete account</span></a>
-  </nav>
-  <div class="langs" role="group" aria-label="Dil / Language"><button type="button" data-set-lang="tr" aria-pressed="true">TR</button><button type="button" data-set-lang="en" aria-pressed="false">EN</button></div>
+    <nav aria-label="Site">
+      <a href="#nasil"><span class="tr">Nasıl çalışır</span><span class="en">How it works</span></a>
+      <a href="#yollar"><span class="tr">Yollar</span><span class="en">Paths</span></a>
+      <a href="gizlilik/"><span class="tr">Gizlilik</span><span class="en">Privacy</span></a>
+    </nav>
+    <div class="langs" role="group" aria-label="Dil / Language"><button type="button" data-set-lang="tr" aria-pressed="true">TR</button><button type="button" data-set-lang="en" aria-pressed="false">EN</button></div>
   </div>
-</header>
+</header></div>
 
 <main id="ana">
+<!-- ============ AÇILIŞ ============ -->
 <section class="hero">
   <div>
-    <h1>Emberline</h1>
-    <p class="lede"><span class="tr">Kararlarınla şekillenen hikâyeler.</span><span class="en">Stories shaped by your choices.</span></p>
-    <p class="sub"><span class="tr">Okursun, seçersin, sonucunu yaşarsın. Her hikâye senin verdiğin kararlarla ilerler ve senin kararlarınla biter.</span><span class="en">You read, you choose, you live with the outcome. Every story moves forward with your decisions, and ends with them too.</span></p>
-    <p class="status"><i aria-hidden="true"></i><span class="tr">Kapalı testteyiz. Yakında Google Play'de.</span><span class="en">Now in closed testing. Coming soon to Google Play.</span></p>
-  </div>
-
-  <div class="scene" aria-live="polite">
-    <p class="where"><span class="tr">Bir deneme sahnesi</span><span class="en">Try a scene</span></p>
-    <p class="line" id="sceneLine"></p>
-    <div class="choices" id="sceneChoices"></div>
-    <p class="hint"><span class="tr">Bir seçim yap. Hikâye ona göre devam eder.</span><span class="en">Make a choice. The story follows it.</span></p>
-  </div>
-</section>
-
-<section class="chapter" aria-labelledby="h-secim">
-  <div class="copy">
-    <h2 id="h-secim"><span class="tr">Her seçim bir yol açar</span><span class="en">Every choice opens a path</span></h2>
-    <p><span class="tr">Hikâyeler tek bir çizgide ilerlemez. Verdiğin kararlar sahneleri, karakterlerin sana bakışını ve hikâyenin nasıl biteceğini değiştirir.</span><span class="en">Stories don't run in a straight line. Your decisions change the scenes, how characters see you, and how the story ends.</span></p>
-    <p><span class="tr">Aynı hikâyeyi iki kez oku: <strong>aynı yerden geçmeyeceksin.</strong></span><span class="en">Read the same story twice: <strong>you won't pass the same way.</strong></span></p>
-  </div>
-  <div class="paths">
-    <svg id="paths" viewBox="0 0 520 330" role="img" aria-label="Paths branching from one beginning into three different endings">
-      <g class="draw">
-        <path class="track" d="M40 165 C 120 165, 140 90, 220 90"/>
-        <path class="track" d="M40 165 C 120 165, 140 240, 220 240"/>
-        <path class="track" d="M220 90 C 300 90, 320 50, 470 50"/>
-        <path class="track dim" d="M220 90 C 300 90, 320 140, 470 140"/>
-        <path class="track" d="M220 240 C 300 240, 330 280, 470 280"/>
-      </g>
-      <circle class="node" cx="40" cy="165" r="9"/>
-      <circle class="node" cx="220" cy="90" r="8"/>
-      <circle class="node" cx="220" cy="240" r="8"/>
-      <circle class="node end" cx="470" cy="50" r="9"/>
-      <circle class="node end" cx="470" cy="140" r="9" opacity=".45"/>
-      <circle class="node end" cx="470" cy="280" r="9"/>
-      <text x="28" y="200" class="tr">Başlangıç</text><text x="28" y="200" class="en">Beginning</text>
-      <text x="196" y="66" class="tr">Seçim</text><text x="190" y="66" class="en">Choice</text>
-      <text x="196" y="274" class="tr">Seçim</text><text x="190" y="274" class="en">Choice</text>
-      <text x="408" y="26" class="tr">Bir son</text><text x="400" y="26" class="en">An ending</text>
-      <text x="395" y="176" class="tr">Başka bir son</text><text x="380" y="176" class="en">Another ending</text>
-      <text x="400" y="316" class="tr">Bambaşka bir son</text><text x="370" y="316" class="en">A whole other ending</text>
-    </svg>
-  </div>
-</section>
-
-<section class="chapter flip" aria-labelledby="h-sor">
-  <div class="copy">
-    <h2 id="h-sor"><span class="tr">Sor, ama seçerek</span><span class="en">Ask, but choose</span></h2>
-    <p><span class="tr">Bir konuşmada her soruyu soramazsın. Birini seçtiğinde ötekiler kapanır. Cevaptan sonra aynı konuda daha derine inebilirsin.</span><span class="en">You can't ask everything in a conversation. Pick one question and the others close. After the answer, you can dig deeper into the same topic.</span></p>
-    <p><span class="tr">Sormadığın soru kaybolmaz: hikâyenin ilerisinde, hiç beklemediğin bir anda karşına çıkabilir.</span><span class="en">The question you didn't ask doesn't disappear: it may come back later in the story, when you least expect it.</span></p>
-  </div>
-  <div class="ask" aria-live="polite">
-    <div class="who"><b aria-hidden="true"></b><span><span class="tr">Gece bekçisi</span><span class="en">The night watchman</span></span></div>
-    <p class="said" id="askSaid"></p>
-    <div class="q" id="askQ"></div>
-    <p class="tip" id="askNote"></p>
-  </div>
-</section>
-
-<section class="chapter" aria-labelledby="h-kodeks">
-  <div class="copy">
-    <h2 id="h-kodeks"><span class="tr">Kodeks hatırlar</span><span class="en">The Codex remembers</span></h2>
-    <p><span class="tr">Tanıştığın karakterler, verdiğin kararlar ve ulaştığın sonlar Kodeks'te birikir. Henüz tanışmadığın biri de yerinde bir soru işaretiyle seni bekler.</span><span class="en">The characters you meet, the decisions you make and the endings you reach all gather in the Codex. Someone you haven't met yet waits for you there as a question mark.</span></p>
-    <p><span class="tr">Bir hikâyeyi bitirdiğinde, hangi yoldan geldiğini burada görürsün.</span><span class="en">When you finish a story, this is where you see the path you took.</span></p>
-  </div>
-  <div>
-    <div class="codex">
-      <div class="person you"><div class="face" aria-hidden="true"></div><strong><span class="tr">Sen</span><span class="en">You</span></strong><small><span class="tr">Hikâyenin gözü</span><span class="en">The story's eyes</span></small></div>
-      <div class="person"><div class="face" aria-hidden="true"></div><strong><span class="tr">Yolcu</span><span class="en">The traveller</span></strong><small><span class="tr">2. bölümde tanıştınız</span><span class="en">Met in chapter 2</span></small></div>
-      <div class="person locked"><div class="face" aria-hidden="true"></div><strong>???</strong><small><span class="tr">4. bölümde tanışacaksın</span><span class="en">You'll meet in chapter 4</span></small></div>
+    <h1><span class="tr">Hikâyenin sonunu sen yazarsın.</span><span class="en">You decide how the story ends.</span></h1>
+    <p class="sub"><span class="tr">Emberline'da okursun, seçersin ve sonucunu yaşarsın. Her karar sahneyi, karakterleri ve hikâyenin nasıl biteceğini değiştirir.</span><span class="en">In Emberline you read, you choose, and you live with the outcome. Every decision changes the scene, the characters and the way the story ends.</span></p>
+    <div class="actions">
+      <a class="btn primary" href="#nasil"><span class="tr">Nasıl çalışır?</span><span class="en">How does it work?</span></a>
+      <a class="btn ghost" href="mailto:sanatcan1can@gmail.com?subject=Emberline%20kapal%C4%B1%20test"><span class="tr">Kapalı teste katıl</span><span class="en">Join the closed test</span></a>
     </div>
-    <ul class="decisions">
-      <li><span class="tr">Kapıyı çalmak yerine içeri girdin.</span><span class="en">You went in instead of knocking.</span></li>
-      <li><span class="tr">Bekçiye o geceyi sordun, sırrı sormadın.</span><span class="en">You asked the watchman about that night, not about the secret.</span></li>
-    </ul>
+    <p class="status"><i aria-hidden="true"></i><span><span class="tr">Şu an kapalı testte. Yakında Google Play'de.</span><span class="en">Now in closed testing. Coming soon to Google Play.</span></span></p>
   </div>
-</section>
 
-<section class="chapter flip" aria-labelledby="h-devam">
-  <div class="copy">
-    <h2 id="h-devam"><span class="tr">Kaldığın yerden</span><span class="en">Right where you left off</span></h2>
-    <p><span class="tr">Okurken her adımın kaydedilir. Uygulamayı kapatsan bile aynı satırdan devam edersin.</span><span class="en">Every step is saved as you read. Even if you close the app, you pick up on the same line.</span></p>
-    <p><span class="tr">Önemli anlara yer imi koy. Yazı tipini ve yazı boyutunu, okumayı ve menüleri ayrı ayrı olmak üzere kendine göre ayarla.</span><span class="en">Bookmark the moments that matter. Set the font and text size your way, separately for reading and for menus.</span></p>
-  </div>
-  <div class="reader">
-    <div class="top"><span><span class="tr">Bölüm 3</span><span class="en">Chapter 3</span></span>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z"/></svg>
+  <div class="hero-phone">
+    <div class="phone" role="group" aria-label="Deneme sahnesi / Sample scene">
+      <div class="screen">
+        <div class="view reader-v on" id="play">
+          <div class="win"></div><div class="floor"></div>
+          <div class="chip-top"><b><span class="tr">Deneme sahnesi</span><span class="en">Sample scene</span></b><b id="playStep">1/3</b></div>
+          <div class="char l" data-side="l"><div class="head"></div><div class="body"></div></div>
+          <div class="char r" data-side="r"><div class="head"></div><div class="body"></div></div>
+          <p class="bubble" id="playBubble" aria-live="polite"><span class="who"></span><span class="txt"></span></p>
+          <button class="tapzone" type="button" id="playTap" aria-label="Devam / Continue"></button>
+          <p class="tap" id="playHint"><span><span class="tr">Devam etmek için dokun</span><span class="en">Tap to continue</span></span></p>
+          <div class="choicebox" id="playChoices" hidden></div>
+        </div>
+      </div>
     </div>
-    <p class="page-line"><span class="tr">Pencerenin dışında yıldızlar yer değiştiriyor. Bu sefer kararını vermeden önce biraz daha bekliyorsun.</span><span class="en">Outside the window, the stars shift. This time you wait a little longer before you decide.</span></p>
-    <div class="progress" aria-hidden="true"><i></i></div>
-    <div class="sizes" aria-hidden="true"><span>Aa</span><span>Aa</span><span>Aa</span></div>
   </div>
 </section>
 
+<!-- ============ NASIL ÇALIŞIR ============ -->
+<section class="how" id="nasil" aria-labelledby="h-nasil">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="h-nasil"><span class="tr">Nasıl çalışır?</span><span class="en">How does it work?</span></h2>
+      <p><span class="tr">Bir hikâye seçmekten sonuna ulaşmaya kadar dört adım.</span><span class="en">Four steps, from picking a story to reaching its end.</span></p>
+    </div>
+    <div class="story">
+      <div class="steps">
+        <article class="step" data-view="home">
+          <p class="num">01</p>
+          <h3><span class="tr">Hikâyeni seç</span><span class="en">Pick your story</span></h3>
+          <p><span class="tr">Türlere göz at, ara, kapaklara bak. Yarım bıraktığın hikâye en üstte seni bekler.</span><span class="en">Browse genres, search, look through the covers. The story you left unfinished waits for you at the top.</span></p>
+          <div class="inline-phone"></div>
+        </article>
+        <article class="step" data-view="reader">
+          <p class="num">02</p>
+          <h3><span class="tr">Sahneyi izler gibi oku</span><span class="en">Read it like a scene</span></h3>
+          <p><span class="tr">Konuşan karakter öne çıkar, konuşma balonu ona doğru döner. Kim sağda, kim solda, hep bellidir. Dokunarak ilerlersin.</span><span class="en">The speaking character steps forward and the speech bubble points to them. You always know who is on the left and who is on the right. Tap to move on.</span></p>
+          <div class="inline-phone"></div>
+        </article>
+        <article class="step" data-view="hub">
+          <p class="num">03</p>
+          <h3><span class="tr">Sor, ama seçerek</span><span class="en">Ask, but choose</span></h3>
+          <p><span class="tr">Bir konuşmada her şeyi soramazsın. Bir soru seçtiğinde ötekiler kapanır ve cevaptan sonra aynı konuda iki üç adım daha derine inebilirsin.</span><span class="en">You can't ask everything in one conversation. Pick a question and the others close; after the answer you can go two or three steps deeper on the same topic.</span></p>
+          <p><span class="tr">Hikâye için gereken bilgi kaybolmaz: sormadıysan bile, ileride başka bir yoldan sana ulaşır.</span><span class="en">Information the story needs is never lost: even if you didn't ask, it reaches you later by another route.</span></p>
+          <div class="inline-phone"></div>
+        </article>
+        <article class="step" data-view="codex">
+          <p class="num">04</p>
+          <h3><span class="tr">Kodeks hatırlar</span><span class="en">The Codex remembers</span></h3>
+          <p><span class="tr">Tanıştığın karakterler, verdiğin kararlar ve ulaştığın sonlar Kodeks'te birikir. Henüz tanışmadığın biri, yerinde bir soru işaretiyle seni bekler.</span><span class="en">The characters you meet, the choices you make and the endings you reach gather in the Codex. Someone you haven't met yet waits there as a question mark.</span></p>
+          <div class="inline-phone"></div>
+        </article>
+      </div>
+
+      <div class="sticky" aria-hidden="true">
+        <div class="phone">
+          <div class="screen" id="demoScreen">
+            <!-- 1: keşfet -->
+            <div class="view home-v on" data-v="home">
+              <h4><span class="tr">Keşfet</span><span class="en">Discover</span></h4>
+              <p class="muted"><span class="tr">Bu akşam ne okuyalım?</span><span class="en">What shall we read tonight?</span></p>
+              <div class="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="tr">Hikâye ara</span><span class="en">Search stories</span></div>
+              <div class="chips"><span class="on"><span class="tr">Tümü</span><span class="en">All</span></span><span><span class="tr">Gizem</span><span class="en">Mystery</span></span><span><span class="tr">Dram</span><span class="en">Drama</span></span><span><span class="tr">Bilim kurgu</span><span class="en">Sci-fi</span></span></div>
+              <div class="cont"><div class="mini cv1"></div><div><b><span class="tr">Kaldığın yerden devam et</span><span class="en">Continue where you left off</span></b><small><span class="tr">Bölüm 3 · %42</span><span class="en">Chapter 3 · 42%</span></small></div></div>
+              <div class="covers"><div class="cover cv2"><b><span class="tr">Gece Kıyısı</span><span class="en">Night Shore</span></b></div><div class="cover cv3"><b><span class="tr">Kül</span><span class="en">Ash</span></b></div></div>
+              <div class="tabbar"><i class="on"></i><i></i><i></i><i></i></div>
+            </div>
+            <!-- 2: okuma -->
+            <div class="view reader-v auto-reader" data-v="reader">
+              <div class="win"></div><div class="floor"></div>
+              <div class="chip-top"><b><span class="tr">Bölüm 2</span><span class="en">Chapter 2</span></b><b>☰</b></div>
+              <div class="char l"><div class="head"></div><div class="body"></div></div>
+              <div class="char r"><div class="head"></div><div class="body"></div></div>
+              <p class="bubble"><span class="who"></span><span class="txt"></span></p>
+            </div>
+            <!-- 3: soru merkezi -->
+            <div class="view hub-v auto-hub" data-v="hub">
+              <div class="speaker"><i></i><b><span class="tr">Bekçi</span><span class="en">The watchman</span></b></div>
+              <p class="said"></p>
+              <div class="qs"></div>
+              <p class="flag"></p>
+            </div>
+            <!-- 4: kodeks -->
+            <div class="view codex-v" data-v="codex">
+              <h4><span class="tr">Kodeks</span><span class="en">Codex</span></h4>
+              <div class="stats"><div><b>7</b><small><span class="tr">karar</span><span class="en">choices</span></small></div><div><b>2</b><small><span class="tr">karakter</span><span class="en">characters</span></small></div><div><b>1/3</b><small><span class="tr">son</span><span class="en">endings</span></small></div></div>
+              <div class="faces"><div><div class="f f1"></div><small><span class="tr">Yolcu</span><span class="en">Traveller</span></small></div><div><div class="f f2"></div><small><span class="tr">Bekçi</span><span class="en">Watchman</span></small></div><div><div class="f f3">?</div><small><span class="tr">Henüz değil</span><span class="en">Not yet</span></small></div></div>
+              <div class="timeline">
+                <p><span class="tr">Kapıyı çalmak yerine içeri girdin.</span><span class="en">You went in instead of knocking.</span></p>
+                <p><span class="tr">Bekçiye o geceyi sordun.</span><span class="en">You asked the watchman about that night.</span></p>
+                <p><span class="tr">Mektubu sakladın.</span><span class="en">You kept the letter hidden.</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YOLLAR ============ -->
+<section class="branch" id="yollar" aria-labelledby="h-yollar">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="h-yollar"><span class="tr">Aynı hikâye, başka bir yol</span><span class="en">Same story, another path</span></h2>
+      <p><span class="tr">İki karar ver, yolunun haritada nasıl çizildiğini gör. Bazı yollar ayrılır, bazıları yeniden buluşur.</span><span class="en">Make two decisions and watch your path draw itself on the map. Some paths split apart, some meet again.</span></p>
+    </div>
+    <div class="branch-panel">
+      <div class="controls">
+        <div class="ctl">
+          <span class="label"><span class="tr">1. karar</span><span class="en">Decision 1</span></span>
+          <div class="seg" data-ctl="a">
+            <button type="button" data-v="0" aria-pressed="true"><span class="tr">Doğruyu söyle</span><span class="en">Tell the truth</span></button>
+            <button type="button" data-v="1" aria-pressed="false"><span class="tr">Sakla</span><span class="en">Keep it hidden</span></button>
+          </div>
+        </div>
+        <div class="ctl">
+          <span class="label"><span class="tr">2. karar</span><span class="en">Decision 2</span></span>
+          <div class="seg" data-ctl="b">
+            <button type="button" data-v="0" aria-pressed="true"><span class="tr">Yardım iste</span><span class="en">Ask for help</span></button>
+            <button type="button" data-v="1" aria-pressed="false"><span class="tr">Tek başına git</span><span class="en">Go alone</span></button>
+          </div>
+        </div>
+        <div class="ending" aria-live="polite"><b id="endName"></b><span id="endText"></span></div>
+      </div>
+      <div class="map">
+        <svg viewBox="0 0 600 340" role="img" aria-label="Dallanan yollar haritası / Branching paths map">
+          <path class="p" id="p-sa" d="M50 170 C 130 170, 140 90, 220 90"/>
+          <path class="p" id="p-sb" d="M50 170 C 130 170, 140 250, 220 250"/>
+          <path class="p" id="p-a1" d="M220 90 C 330 90, 380 50, 520 50"/>
+          <path class="p" id="p-a2" d="M220 90 C 330 90, 380 170, 520 170"/>
+          <path class="p" id="p-b1" d="M220 250 C 330 250, 380 170, 520 170"/>
+          <path class="p" id="p-b2" d="M220 250 C 330 250, 380 290, 520 290"/>
+          <circle class="n on" id="n-s" cx="50" cy="170" r="12"/>
+          <circle class="n" id="n-a" cx="220" cy="90" r="11"/>
+          <circle class="n" id="n-b" cx="220" cy="250" r="11"/>
+          <circle class="end" id="e-1" cx="520" cy="50" r="13"/>
+          <circle class="end" id="e-2" cx="520" cy="170" r="13"/>
+          <circle class="end" id="e-3" cx="520" cy="290" r="13"/>
+          <text x="22" y="210"><tspan class="tr">Başlangıç</tspan><tspan class="en">Start</tspan></text>
+          <text id="t-1" x="545" y="56">I</text>
+          <text id="t-2" x="545" y="176">II</text>
+          <text id="t-3" x="545" y="296">III</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OKURKEN ============ -->
+<section class="perks" aria-labelledby="h-okur">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="h-okur"><span class="tr">Okuma senin hızında</span><span class="en">Reading at your pace</span></h2>
+    </div>
+    <div class="perk-row">
+      <div class="perk">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+        <h3><span class="tr">Otomatik kayıt</span><span class="en">Autosave</span></h3>
+        <p><span class="tr">Her adımın kaydedilir. Uygulamayı kapatsan da aynı satırdan devam edersin.</span><span class="en">Every step is saved. Close the app and you pick up on the same line.</span></p>
+      </div>
+      <div class="perk">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+        <h3><span class="tr">Yer imleri</span><span class="en">Bookmarks</span></h3>
+        <p><span class="tr">Önemli anları işaretle, istediğin zaman o sahneye geri dön.</span><span class="en">Mark the moments that matter and jump back to them any time.</span></p>
+      </div>
+      <div class="perk">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 19 9 5l5 14M6 14h6M15 19l3-8 3 8M16 17h4"/></svg>
+        <h3><span class="tr">Sana göre yazı</span><span class="en">Text your way</span></h3>
+        <p><span class="tr">Yazı tipini ve boyutunu okuma ekranı ve menüler için ayrı ayrı seç.</span><span class="en">Choose font and size separately for the reader and the menus.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KAPANIŞ ============ -->
 <section class="closing" aria-labelledby="h-son">
-  <h2 id="h-son"><span class="tr">Hikâyeye başla. Gerisi senin kararın.</span><span class="en">Start the story. The rest is your call.</span></h2>
-  <p><span class="tr">Emberline şu an küçük bir okur grubuyla kapalı testte. Yakında Google Play'de herkese açılacak.</span><span class="en">Emberline is in closed testing with a small group of readers. It will open to everyone on Google Play soon.</span></p>
+  <div class="wrap">
+    <div class="closing-panel">
+      <h2 id="h-son"><span class="tr">Hikâyeye başla.<br>Gerisi senin kararın.</span><span class="en">Start the story.<br>The rest is your call.</span></h2>
+      <p><span class="tr">Emberline şu an küçük bir okur grubuyla kapalı testte. Katılmak istersen bize yaz.</span><span class="en">Emberline is in closed testing with a small group of readers. Write to us if you'd like to join.</span></p>
+      <a class="btn primary" href="mailto:sanatcan1can@gmail.com?subject=Emberline%20kapal%C4%B1%20test"><span class="tr">Kapalı teste katıl</span><span class="en">Join the closed test</span></a>
+    </div>
+  </div>
 </section>
 </main>
 
-<footer class="foot">
+<div class="foot-wrap"><footer class="foot">
   <nav aria-label="Yasal / Legal">
     <a href="gizlilik/"><span class="tr">Gizlilik Politikası</span><span class="en">Privacy Policy</span></a>
     <a href="kosullar/"><span class="tr">Kullanım Koşulları</span><span class="en">Terms of Use</span></a>
@@ -139,7 +236,7 @@
     <a href="mailto:sanatcan1can@gmail.com"><span class="tr">İletişim</span><span class="en">Contact</span></a>
   </nav>
   <small>© 2026 Bircan Görür</small>
-</footer>
+</footer></div>
 </div>
 <script src="assets/sky.js"></script>
 <script src="assets/site.js"></script>

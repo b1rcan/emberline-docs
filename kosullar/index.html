@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kullanım Koşulları | Emberline</title>
 <meta name="description" content="Emberline uygulamasının kullanım koşulları.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%2305060F%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%227%22 fill=%22%23F4A259%22/%3E%3C/svg%3E">
 <meta name="theme-color" content="#05060F">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="../assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
 <script src="../assets/lang.js"></script>
 </head>
@@ -16,7 +15,7 @@
 <canvas id="sky" aria-hidden="true"></canvas>
 <a class="skip" href="#metin"><span class="tr">İçeriğe geç</span><span class="en">Skip to content</span></a>
 <div class="page">
-<header class="bar">
+<div class="bar-wrap"><header class="bar">
   <a class="mark" href="../">Emberline</a>
   <div class="right">
   <nav aria-label="Belgeler / Documents">
@@ -26,7 +25,7 @@
   </nav>
   <div class="langs" role="group" aria-label="Dil / Language"><button type="button" data-set-lang="tr" aria-pressed="true">TR</button><button type="button" data-set-lang="en" aria-pressed="false">EN</button></div>
   </div>
-</header>
+</header></div>
 <main class="doc" id="metin"><article class="sheet">
 <div class="tr" lang="tr">
 
@@ -278,7 +277,7 @@
 <p>For any question or request: <a href="mailto:sanatcan1can@gmail.com">sanatcan1can@gmail.com</a></p>
 </div>
 </article></main>
-<footer class="foot">
+<div class="foot-wrap"><footer class="foot">
   <nav aria-label="Yasal / Legal">
     <a href="../"><span class="tr">Ana sayfa</span><span class="en">Home</span></a>
     <a href="../gizlilik/"><span class="tr">Gizlilik Politikası</span><span class="en">Privacy Policy</span></a>
@@ -287,7 +286,7 @@
     <a href="mailto:sanatcan1can@gmail.com"><span class="tr">İletişim</span><span class="en">Contact</span></a>
   </nav>
   <small>© 2026 Bircan Görür</small>
-</footer>
+</footer></div>
 </div>
 <script src="../assets/sky.js"></script>
 </body>
