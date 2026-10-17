@@ -1,25 +1,37 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" data-title-tr="Hesap ve Veri Silme | Emberline" data-title-en="Delete Account and Data | Emberline">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hesap ve Veri Silme · Emberline</title>
+<title>Hesap ve Veri Silme | Emberline</title>
 <meta name="description" content="Emberline hesabını ve verilerini nasıl silebileceğin.">
+<meta name="theme-color" content="#05060F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
+<script src="../assets/lang.js"></script>
 </head>
-<body>
-<div class="wrap">
-<header class="site">
-  <a class="brand" href="../">Ember<span>line</span></a>
-  <nav>
-    <a href="../gizlilik/">Gizlilik</a>
-    <a href="../kosullar/">Kullanım Koşulları</a>
-    <a href="./" aria-current="page">Hesap Silme</a>
+<body data-calm-sky>
+<canvas id="sky" aria-hidden="true"></canvas>
+<a class="skip" href="#metin"><span class="tr">İçeriğe geç</span><span class="en">Skip to content</span></a>
+<div class="page">
+<header class="bar">
+  <a class="mark" href="../">Emberline</a>
+  <div class="right">
+  <nav aria-label="Belgeler / Documents">
+    <a href="../gizlilik/"><span class="tr">Gizlilik</span><span class="en">Privacy</span></a>
+    <a href="../kosullar/"><span class="tr">Koşullar</span><span class="en">Terms</span></a>
+    <a href="../hesap-silme/" aria-current="page"><span class="tr">Hesap silme</span><span class="en">Delete account</span></a>
   </nav>
+  <div class="langs" role="group" aria-label="Dil / Language"><button type="button" data-set-lang="tr" aria-pressed="true">TR</button><button type="button" data-set-lang="en" aria-pressed="false">EN</button></div>
+  </div>
 </header>
+<main class="doc" id="metin"><article class="sheet">
+<div class="tr" lang="tr">
 
 <h1>Emberline hesabını ve verilerini silme</h1>
-<p class="meta">Uygulama: Emberline · Geliştirici: Bircan Görür · Son güncelleme: 17 Ekim 2026</p>
+<p class="dates"><span>Uygulama: Emberline</span><span>Geliştirici: Bircan Görür</span><span>Son güncelleme: 17 Ekim 2026</span></p>
 
 <p>Emberline hesabını ve buna bağlı tüm verileri istediğin zaman silebilirsin. Silmek için iki yol var: en hızlısı uygulamanın içinden silmek. Uygulamaya erişemiyorsan bu sayfadan talepte bulunabilirsin.</p>
 
@@ -64,7 +76,65 @@
 
 <p class="note">Ayrıntılı bilgi için <a href="../gizlilik/#silme">Gizlilik Politikası → Hesap ve veri silme</a> bölümüne bakabilirsin.</p>
 
-<footer>© 2026 Emberline · <a href="../gizlilik/">Gizlilik Politikası</a> · <a href="../kosullar/">Kullanım Koşulları</a></footer>
 </div>
+<div class="en" lang="en">
+<h1>Delete your Emberline account and data</h1>
+<p class="dates"><span>App: Emberline</span><span>Developer: Bircan Görür</span><span>Last updated: 17 October 2026</span></p>
+
+<p>You can delete your Emberline account and all data linked to it at any time. There are two ways: the fastest is from inside the app. If you can't access the app, you can request deletion from this page.</p>
+
+<h2 id="en-in-app">In the app</h2>
+<p><strong>Registered account (email or Google):</strong></p>
+<ol class="steps">
+  <li>Open Emberline and go to <strong>Profile</strong> in the bottom menu.</li>
+  <li>Tap <strong>Delete account</strong>.</li>
+  <li>If asked, enter your password or confirm with Google again, then confirm the deletion.</li>
+</ol>
+<p><strong>If you use the app as a guest:</strong> Profile → <strong>Delete my data</strong>.</p>
+<p>Deletion starts immediately and cannot be undone.</p>
+
+<h2 id="en-request">Request without the app</h2>
+<p>If you can't access the app or have uninstalled it, send your deletion request by email:</p>
+<p><a class="button" href="mailto:sanatcan1can@gmail.com?subject=Emberline%20account%20deletion%20request&amp;body=I%20request%20the%20deletion%20of%20my%20Emberline%20account%20and%20data.%0A%0AEmail%20linked%20to%20my%20account%3A%20%0A(For%20guest%20accounts)%20User%20ID%3A%20">Send deletion request</a></p>
+<ul>
+  <li>Send the email <strong>from the email address linked to your account</strong>. This is how your request is verified.</li>
+  <li>Use the subject "Emberline account deletion request".</li>
+  <li>Guest accounts are not linked to an email address. To delete guest data, include the <strong>user ID</strong> shown in the app under <strong>Profile → Privacy</strong>.</li>
+</ul>
+<p>Your request will be completed within <strong>30 days</strong>, and you will be notified by email.</p>
+
+<h2 id="en-deleted">What is deleted?</h2>
+<div class="table"><table>
+<thead><tr><th>Data</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td>Account data (email, Google account link, display name)</td><td>Deleted</td></tr>
+<tr><td>Reading progress, choices, bookmarks, saved stories, preferences</td><td>Deleted</td></tr>
+<tr><td>Keys and unlocked chapters</td><td>Deleted. Unused keys are not refunded.</td></tr>
+<tr><td>Feedback and screenshots</td><td>Deleted</td></tr>
+<tr><td>App data on your phone (date of birth, notes, recent searches, downloaded stories)</td><td>Cleared from your phone if you delete in the app. If you requested deletion on the web, uninstalling the app removes it.</td></tr>
+</tbody></table></div>
+
+<h2 id="en-kept">What may remain for a while?</h2>
+<ul>
+  <li><strong>Crash reports:</strong> technical reports not linked to your identity. They remain in Firebase Crashlytics for up to 90 days and are then deleted automatically.</li>
+  <li><strong>Usage analytics:</strong> if you turned analytics on, usage data not linked to your identity remains in Google Analytics for up to 2 months.</li>
+  <li><strong>Purchase records:</strong> kept by Google Play under Google's own policies and legal obligations.</li>
+  <li><strong>Backups:</strong> deleted data is permanently removed from the service provider's backups within a reasonable time.</li>
+</ul>
+<p class="note">For more detail, see <a href="../gizlilik/#en-deletion">Privacy Policy → Deleting your account and data</a>.</p>
+</div>
+</article></main>
+<footer class="foot">
+  <nav aria-label="Yasal / Legal">
+    <a href="../"><span class="tr">Ana sayfa</span><span class="en">Home</span></a>
+    <a href="../gizlilik/"><span class="tr">Gizlilik Politikası</span><span class="en">Privacy Policy</span></a>
+    <a href="../kosullar/"><span class="tr">Kullanım Koşulları</span><span class="en">Terms of Use</span></a>
+    <a href="../hesap-silme/"><span class="tr">Hesap ve veri silme</span><span class="en">Account and data deletion</span></a>
+    <a href="mailto:sanatcan1can@gmail.com"><span class="tr">İletişim</span><span class="en">Contact</span></a>
+  </nav>
+  <small>© 2026 Bircan Görür</small>
+</footer>
+</div>
+<script src="../assets/sky.js"></script>
 </body>
 </html>
